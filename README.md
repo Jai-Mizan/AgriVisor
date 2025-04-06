@@ -1,6 +1,3 @@
-Got it! Here's a single command to generate the full `README.md` with your content (escaped properly). Just paste and run this in your terminal (PowerShell, Bash, or VS Code terminal):
-
-> ⚠️ Make sure you're in the project directory first!
 
 ```bash
 cat > README.md << 'EOF'
