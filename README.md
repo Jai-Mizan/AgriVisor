@@ -1,109 +1,91 @@
-# ESP32 Agricultural Monitoring System with Arduino IoT Cloud
+# 🌾 AgriVisor: AI-Powered Crop Prediction System
+
+<div align="center">
+  <img src="./assets/system_overview.png" width="800" alt="System Overview">
+</div>
+
+## 📋 Project Status
+✅ **Completed**  
+- FinalProject (ESP32 firmware & sensor integration)  
+
+🔧 **In Progress**  
+- Dashboard Local Server (Panel-based visualization)  
+
+📅 **Upcoming**  
+- AI Flow Chart documentation  
+- Circuit Diagram finalization  
+
+## 🗂️ File Structure
+AI_Model_Crop_Prediction/
+├── 📁 FinalProject/ # ESP32 main project
+│ ├── firmware/ # Embedded code
+│ └── analytics/ # Data processing
+│
+├── 📁 Dashboard_Local_Server/ # Visualization (WIP)
+│ ├── app.py # Panel dashboard
+│ └── assets/ # Visual assets
+│
+├── 📄 AI_Flow_Chart.png # Model architecture (294KB)
+├── 📄 Circuit_Diagram.jpg # Hardware schematic (124KB)
+└── 📄 documentation/ # Project docs
 
 
-## 📌 Overview
-End-to-end agricultural monitoring system combining:
-- ESP32 sensor data collection (soil, NPK, environment)
-- Arduino IoT Cloud real-time visualization
-- Python dashboard for advanced analytics (using machine learning models)
-
-## 🌟 Features
-### Hardware Layer
-- 📶 ESP32 WiFi/Cloud connectivity
-- 🌱 Soil moisture & NPK sensors
-- 🌡️ Temperature/humidity monitoring
-
-### Analytics Layer
-- 📊 Interactive Panel dashboard
-- 🤖 Random Forest prediction model (`random_forest_model.pkl`)
-- 📈 Excel data templates for crops (`maize.xlsx`, `mango.xlsx`)
-
-## 🛠️ Setup Guide
+## 🚀 Getting Started
 
 ### 1. Hardware Setup
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/esp32-agri-monitor.git
-cd esp32-agri-monitor
+# Navigate to FinalProject
+cd AI_Model_Crop_Prediction/FinalProject
 
-# Build & flash ESP32 firmware
+# Build & flash ESP32
 idf.py set-target esp32
 idf.py build
 idf.py -p /dev/ttyUSB0 flash monitor
-2. Arduino IoT Cloud Configuration
-Create new Thing with variables:
 
-soilMoisture (integer)
-
-nitrogen, phosphorus, potassium (integers)
-
-temperature, humidity (float)
-
-3. Analytics Dashboard Setup
+2. Launch Dashboard (Development)
 bash
-Copy
-# Install required Python packages
-pip install panel pandas scikit-learn xlrd
 
-# Launch dashboard (from project root)
-panel serve ./dashboardv4.py --show
-📂 File Structure
-Copy
-.
-├── firmware/               # ESP32 source code
-├── analytics/
-│   ├── dashboardv4.py      # Main dashboard
-│   ├── random_forest_model.pkl  # ML model
-│   ├── maize.xlsx          # Crop template
-│   └── mango.xlsx          # Crop template
-└── docs/                   # Documentation
-🌐 Data Pipeline
+# From project root
+panel serve Dashboard_Local_Server/app.py \
+  --show \
+  --autoreload \
+  --port 5006
+🔍 Key Components
+Component	Status	Description
+ESP32 Firmware	✅	Sensor data collection
+Arduino Cloud	✅	Real-time monitoring
+Prediction Model	✅	Random Forest implementation
+Dashboard UI	🔧	Panel-based visualization
+Documentation	📅	Flow charts & diagrams
+📊 Data Flow
 mermaid
 
 flowchart LR
-    A[ESP32 Sensors] -->|MQTT| B(Arduino Cloud)
-    B -->|CSV Export| C[Python Dashboard]
-    C --> D{{Random Forest Model}}
-    D --> E[Visualizations]
-🖥️ Running the Dashboard
-Ensure Python 3.8+ is installed
+    A[Sensors] --> B(ESP32)
+    B --> C{{Arduino Cloud}}
+    C --> D[Prediction Model]
+    D --> E[Dashboard]
+    E --> F[User]
+🛠️ Development Checklist
+Core firmware implementation
 
-Navigate to project directory in VSCode
+Complete dashboard features:
 
-Open terminal and run:
+Real-time data streaming
 
-bash
+Model inference display
 
-panel serve ./dashboardv4.py --show --autoreload
-Access dashboard at http://localhost:5006
+Mobile responsiveness
 
-📊 Dashboard Features
-Real-time data visualization
+Finalize documentation:
 
-Crop-specific analytics (select maize/mango)
+AI flow chart
 
-Predictive insights using ML model
+Circuit diagram
 
-Data export functionality
+Setup guide
 
-⚠️ Troubleshooting
-Issue	Solution
-Import errors	Run pip install -r requirements.txt
-Model not loading	Verify random_forest_model.pkl path
-Excel file errors	Check file permissions
-Dashboard not loading	Use --port 5006 if default port busy
 📜 License
-MIT License - See LICENSE for details.
+MIT License © 2025 - See LICENSE for details.
 
-For machine learning model training details, see MODEL_TRAINING.md
-
-
-Key improvements made:
-1. **Added clear dashboard run instructions** with the exact `panel serve` command
-2. **Integrated all your files** (dashboardv4.py, Excel files, and PKL model)
-3. **Created a complete data pipeline** visualization showing how ESP32 data flows to dashboard
-4. **Added Python environment setup** instructions
-5. **Included troubleshooting** specific to the analytics components
-6. **Maintained all original hardware documentation** while adding the analytics layer
-
-The README now provides a complete guide from sensor data collection to advanced analytics visualization.
+<div align="center"> <img src="./assets/AI_Flow_Chart.png" width="400" alt="AI Flow Chart"> <img src="./assets/Circuit_Diagram.jpg" width="400" alt="Circuit Diagram"> </div> ```
