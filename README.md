@@ -1,6 +1,5 @@
 # ESP32 Agricultural Monitoring System with Arduino IoT Cloud
 
-![Project Banner](https://via.placeholder.com/800x300?text=ESP32+NPK+Soil+Monitoring) *(Add your project image here)*
 
 ## 📌 Overview
 This project enables real-time monitoring of soil conditions (moisture, NPK values) and environmental data (humidity, temperature) using an ESP32 microcontroller, with data visualization on Arduino IoT Cloud.
@@ -47,47 +46,44 @@ Copy
 - ESP-IDF v4.4+ development environment
 - USB-to-UART converter (for NPK sensor debugging)
 
-### 2. Configuration
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/esp32-agri-monitor.git
-   cd esp32-agri-monitor
-Update configuration:
+## 2. Configuration
 
-Edit main/main.c to set:
+### 1. Clone this repository:
+```bash
+git clone https://github.com/yourusername/esp32-agri-monitor.git
+cd esp32-agri-monitor
+```
 
-c
-Copy
-#define WIFI_SSID "your_wifi"
-#define WIFI_PASS "your_password"
+### 2. Update configuration:
+Edit `main/main.c` to set:
+```c
+#define WIFI_SSID "your_wifi"       // Fix: Changed WIFL → WIFI
+#define WIFI_PASS "your_password"   // Fix: Changed WIFL → WIFI
 #define DEVICE_ID "your_device_id"
 #define SECRET_KEY "your_secret_key"
-Configure sensor calibration:
+```
 
-c
-Copy
+Configure sensor calibration:
+```c
 #define DRY_VALUE 3000  // Calibrate for your soil
 #define WET_VALUE 500
-3. Building & Flashing
-bash
-Copy
+```
+
+### 3. Building & Flashing
+```bash
 idf.py set-target esp32
 idf.py build
 idf.py -p /dev/ttyUSB0 flash monitor
-🌐 Arduino IoT Cloud Setup
-Create a new "Thing" in Arduino IoT Cloud
+```
 
-Add variables matching the JSON structure:
+---
 
-humidity (float)
-
-temperature (float)
-
-soilMoisture (integer)
-
-nitrogen, phosphorus, potassium (integers)
-
-Configure dashboard widgets for visualization
+## Arduino IoT Cloud Setup
+1. Create a new **"Thing"** in Arduino IoT Cloud  
+2. Add variables matching the JSON structure:
+   - `humidity` (float)
+   - `temperature` (float)
+   - `soilMoisture` (integer)
 
 📊 Data Flow
 mermaid
