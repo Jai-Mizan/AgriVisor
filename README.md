@@ -59,7 +59,7 @@ Copy
 └── docs/                   # Documentation
 🌐 Data Pipeline
 mermaid
-Copy
+
 flowchart LR
     A[ESP32 Sensors] -->|MQTT| B(Arduino Cloud)
     B -->|CSV Export| C[Python Dashboard]
@@ -73,7 +73,7 @@ Navigate to project directory in VSCode
 Open terminal and run:
 
 bash
-Copy
+
 panel serve ./dashboardv4.py --show --autoreload
 Access dashboard at http://localhost:5006
 
@@ -97,7 +97,6 @@ MIT License - See LICENSE for details.
 
 For machine learning model training details, see MODEL_TRAINING.md
 
-Copy
 
 Key improvements made:
 1. **Added clear dashboard run instructions** with the exact `panel serve` command
