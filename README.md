@@ -1,91 +1,140 @@
-# 🌾 AgriVisor: AI-Powered Crop Prediction System
+# ESP32 Agricultural Monitoring System with Arduino IoT Cloud
 
-<div align="center">
-  <img src="./assets/system_overview.png" width="800" alt="System Overview">
-</div>
+![Project Banner](https://via.placeholder.com/800x300?text=ESP32+NPK+Soil+Monitoring) *(Add your project image here)*
 
-## 📋 Project Status
-✅ **Completed**  
-- FinalProject (ESP32 firmware & sensor integration)  
+## 📌 Overview
+This project enables real-time monitoring of soil conditions (moisture, NPK values) and environmental data (humidity, temperature) using an ESP32 microcontroller, with data visualization on Arduino IoT Cloud.
 
-🔧 **In Progress**  
-- Dashboard Local Server (Panel-based visualization)  
+## 🌟 Features
+- 📶 WiFi connectivity with automatic reconnection
+- 🌱 Soil moisture measurement (0-100%)
+- 🔬 NPK (Nitrogen, Phosphorus, Potassium) sensor integration
+- 🌡️ Environmental monitoring (temperature & humidity)
+- ☁️ Secure MQTT communication with Arduino IoT Cloud
+- 📊 JSON-formatted data payloads
+- ⚙️ Configurable sensor reading intervals
 
-📅 **Upcoming**  
-- AI Flow Chart documentation  
-- Circuit Diagram finalization  
+## 📦 Hardware Requirements
+| Component | Specification |
+|-----------|--------------|
+| Microcontroller | ESP32 (DevKit recommended) |
+| Soil Moisture Sensor | Capacitive or resistive analog sensor |
+| NPK Sensor | JXCT or similar (UART/Modbus) |
+| DHT Sensor | DHT11/DHT22 (temperature & humidity) |
+| Power Supply | 5V/2A or LiPo battery |
 
-## 🗂️ File Structure
-AI_Model_Crop_Prediction/
-├── 📁 FinalProject/ # ESP32 main project
-│ ├── firmware/ # Embedded code
-│ └── analytics/ # Data processing
-│
-├── 📁 Dashboard_Local_Server/ # Visualization (WIP)
-│ ├── app.py # Panel dashboard
-│ └── assets/ # Visual assets
-│
-├── 📄 AI_Flow_Chart.png # Model architecture (294KB)
-├── 📄 Circuit_Diagram.jpg # Hardware schematic (124KB)
-└── 📄 documentation/ # Project docs
+## 🛠️ Wiring Diagram
+ESP32 Pinout:
 
+GPIO34 (ADC1_CH6) → Soil Moisture Sensor
 
-## 🚀 Getting Started
+GPIO15 → DHT Data Pin
 
-### 1. Hardware Setup
-```bash
-# Navigate to FinalProject
-cd AI_Model_Crop_Prediction/FinalProject
+GPIO16 (U2RX) → NPK Sensor TX
 
-# Build & flash ESP32
+GPIO17 (U2TX) → NPK Sensor RX
+
+3.3V/5V → Sensor VCC
+
+GND → Sensor GND
+
+Copy
+
+## 🚀 Setup Instructions
+
+### 1. Prerequisites
+- Arduino IoT Cloud account
+- ESP-IDF v4.4+ development environment
+- USB-to-UART converter (for NPK sensor debugging)
+
+### 2. Configuration
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/esp32-agri-monitor.git
+   cd esp32-agri-monitor
+Update configuration:
+
+Edit main/main.c to set:
+
+c
+Copy
+#define WIFI_SSID "your_wifi"
+#define WIFI_PASS "your_password"
+#define DEVICE_ID "your_device_id"
+#define SECRET_KEY "your_secret_key"
+Configure sensor calibration:
+
+c
+Copy
+#define DRY_VALUE 3000  // Calibrate for your soil
+#define WET_VALUE 500
+3. Building & Flashing
+bash
+Copy
 idf.py set-target esp32
 idf.py build
 idf.py -p /dev/ttyUSB0 flash monitor
+🌐 Arduino IoT Cloud Setup
+Create a new "Thing" in Arduino IoT Cloud
 
-2. Launch Dashboard (Development)
-bash
+Add variables matching the JSON structure:
 
-# From project root
-panel serve Dashboard_Local_Server/app.py \
-  --show \
-  --autoreload \
-  --port 5006
-🔍 Key Components
-Component	Status	Description
-ESP32 Firmware	✅	Sensor data collection
-Arduino Cloud	✅	Real-time monitoring
-Prediction Model	✅	Random Forest implementation
-Dashboard UI	🔧	Panel-based visualization
-Documentation	📅	Flow charts & diagrams
+humidity (float)
+
+temperature (float)
+
+soilMoisture (integer)
+
+nitrogen, phosphorus, potassium (integers)
+
+Configure dashboard widgets for visualization
+
 📊 Data Flow
 mermaid
-
-flowchart LR
-    A[Sensors] --> B(ESP32)
-    B --> C{{Arduino Cloud}}
-    C --> D[Prediction Model]
-    D --> E[Dashboard]
-    E --> F[User]
-🛠️ Development Checklist
-Core firmware implementation
-
-Complete dashboard features:
-
-Real-time data streaming
-
-Model inference display
-
-Mobile responsiveness
-
-Finalize documentation:
-
-AI flow chart
-
-Circuit diagram
-
-Setup guide
-
+Copy
+sequenceDiagram
+    ESP32->>+Arduino Cloud: Connect via MQTT
+    loop Every 10 seconds
+        ESP32->>Sensors: Read data
+        Sensors-->>ESP32: Return values
+        ESP32->>Arduino Cloud: Publish JSON
+    end
+⚠️ Troubleshooting
+Issue	Solution
+WiFi connection fails	Verify credentials, check signal strength
+NPK sensor not responding	Check UART wiring, verify baud rate
+MQTT connection drops	Verify certificate, check secret key
+ADC readings erratic	Ensure stable power supply
 📜 License
-MIT License © 2025 - See LICENSE for details.
+MIT License - See LICENSE for details.
 
-<div align="center"> <img src="./assets/AI_Flow_Chart.png" width="400" alt="AI Flow Chart"> <img src="./assets/Circuit_Diagram.jpg" width="400" alt="Circuit Diagram"> </div> ```
+🤝 Contribution
+Contributions are welcome! Please open an issue or PR for:
+
+Additional sensor support
+
+Power optimization
+
+Enhanced error handling
+
+For detailed development notes, see DEVELOPMENT.md
+
+Copy
+
+### Key Sections Included:
+
+1. **Visual Elements**: Placeholder for project image and diagram
+2. **Hardware Specs**: Clear table of required components
+3. **Step-by-Step Setup**: From cloning to flashing
+4. **Cloud Integration**: Specific Arduino IoT Cloud instructions
+5. **Troubleshooting**: Common issues and solutions
+6. **Visual Data Flow**: Mermaid diagram for easy understanding
+7. **Future-Proofing**: Contribution guidelines and license
+
+### Recommended Additions:
+1. Add actual project images/videos
+2. Include detailed calibration instructions
+3. Add power consumption measurements
+4. Include sample dashboard screenshots from Arduino IoT Cloud
+
+This README provides both technical users and stakeholders with all necessary information while maintaining professional presentation.
