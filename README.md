@@ -47,9 +47,6 @@ GPIO17 (TX2) → NPK Sensor RX
 3.3V → All Sensor VCC
 GND → All Sensor GND
 
-yaml
-Copy
-Edit
 
 ---
 
@@ -77,9 +74,7 @@ idf.py -p /dev/ttyUSB0 flash monitor
 3️⃣ Sensor Calibration
 Edit the following values in main/main.c:
 
-c
-Copy
-Edit
+
 // For dry soil (air reading)
 #define DRY_VALUE 3000
 
@@ -87,9 +82,7 @@ Edit
 #define WET_VALUE 500
 ☁️ Arduino IoT Cloud Configuration
 🧾 Create a Thing with These Variables:
-yaml
-Copy
-Edit
+
 humidity: float       # Range: 0–100%
 temperature: float    # Unit: °C
 soilMoisture: int     # Range: 0–100%
@@ -102,9 +95,7 @@ Add gauge widgets for each sensor
 Add time-series charts for trends
 
 🔄 Data Flow
-mermaid
-Copy
-Edit
+
 sequenceDiagram
     participant ESP32
     participant Cloud
@@ -116,12 +107,14 @@ sequenceDiagram
     Sensors-->>ESP32: Raw values
     ESP32->>Cloud: Publish JSON
     Cloud->>Dashboard: Visualize
+
 ⚠️ Troubleshooting
 Issue	Fix / Suggestion
 No WiFi connection	Double-check SSID & password, restart ESP32
 NPK sensor timeout	Ensure correct UART pins & 9600 baud rate
 MQTT disconnects	Re-check Thing ID, secret key, and tokens
 Noisy ADC readings	Add a 0.1μF capacitor between VCC & GND
+
 🤝 Contributing
 We welcome all contributions, including:
 
