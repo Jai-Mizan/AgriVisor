@@ -1,6 +1,5 @@
 # ESP32 Agricultural Monitoring System with Arduino IoT Cloud
 
-![Project Banner](https://via.placeholder.com/800x300?text=ESP32+NPK+Soil+Monitoring) *(Add your project image here)*
 
 ## 📌 Overview
 This project enables real-time monitoring of soil conditions (moisture, NPK values) and environmental data (humidity, temperature) using an ESP32 microcontroller, with data visualization on Arduino IoT Cloud.
@@ -138,7 +137,7 @@ Here's the updated README.md incorporating your dashboard instructions and maint
 
 # ESP32 Agricultural Monitoring System with Arduino IoT Cloud
 
-![Project Architecture](https://via.placeholder.com/800x300?text=ESP32+IoT+Agriculture+System) *(Replace with your architecture diagram)*
+![Project Architecture](https://www.facebook.com/jaimizan.jaika.3/posts/pfbid0K6WAobrSri5Jc7vSHyhy9qxUTBeBA3cHrcstRTpnp4gvnpX2W9b9KFqnN5QxbsTol?rdid=JDfEO49NSbREVyP8#) *(Replace with your architecture diagram)*
 
 ## 📌 Overview
 End-to-end agricultural monitoring system combining:
